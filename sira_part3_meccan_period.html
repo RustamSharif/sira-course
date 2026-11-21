@@ -1,0 +1,829 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Сира — Часть 3: Мекканский период</title>
+    <script src="https://telegram.org/js/telegram-web-app.js"></script>
+    <style>
+        :root {
+            --primary: #1d4f22;
+            --primary-light: #cdd6cc;
+            --accent: #9c7c28;
+            --bg: #b8bab6;
+            --card: #ccceca;
+            --card-inner: #d8dad6;
+            --text: #191c1a;
+            --muted: #454946;
+            --border-paper: #9ea19c;
+            --correct: #1e5c24;
+            --correct-bg: #b8cfb6;
+            --wrong: #8a2323;
+            --wrong-bg: #d9baba;
+        }
+        * { box-sizing: border-box; }
+        body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-color: var(--bg);
+            background-image:
+                radial-gradient(rgba(0,0,0,0.035) 1px, transparent 0),
+                radial-gradient(rgba(255,255,255,0.06) 1px, transparent 0),
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='none' stroke='%232c302e' stroke-width='0.9' stroke-opacity='0.065'%3E%3Crect x='36' y='36' width='48' height='48'/%3E%3Crect x='36' y='36' width='48' height='48' transform='rotate(45 60 60)'/%3E%3Ccircle cx='60' cy='60' r='16'/%3E%3Cpolygon points='60,26 67,53 94,60 67,67 60,94 53,67 26,60 53,53'/%3E%3Cpath d='M0 0 L24 24 M120 0 L96 24 M0 120 L24 96 M120 120 L96 96'/%3E%3Ccircle cx='0' cy='0' r='18'/%3E%3Ccircle cx='120' cy='0' r='18'/%3E%3Ccircle cx='0' cy='120' r='18'/%3E%3Ccircle cx='120' cy='120' r='18'/%3E%3Cpath d='M60 0 L60 22 M60 98 L60 120 M0 60 L22 60 M98 60 L120 60'/%3E%3C/g%3E%3C/svg%3E");
+            background-size: 16px 16px, 23px 23px, 120px 120px;
+            background-position: 0 0, 7px 11px, 0 0;
+            color: var(--text);
+            margin: 0;
+            padding: 20px 14px;
+            font-size: 18px;
+            line-height: 1.6;
+        }
+        .container {
+            max-width: 820px;
+            margin: 0 auto;
+        }
+        .top-nav {
+            margin-bottom: 12px;
+        }
+        .back-link {
+            display: inline-block;
+            text-decoration: none;
+            color: var(--primary);
+            background: var(--card);
+            border: 1px solid var(--border-paper);
+            padding: 8px 14px;
+            border-radius: 10px;
+            font-size: 0.92rem;
+            font-weight: 700;
+            transition: all 0.15s;
+        }
+        .back-link:hover {
+            background: var(--primary-light);
+            border-color: var(--primary);
+        }
+        .header {
+            background: linear-gradient(135deg, #163d1a, #1f5425);
+            color: #f4f5f2;
+            padding: 24px 20px;
+            border-radius: 14px;
+            text-align: center;
+            margin-bottom: 18px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.16);
+            border-bottom: 4px solid var(--accent);
+        }
+        .header h1 {
+            margin: 0 0 8px 0;
+            font-size: 1.5rem;
+        }
+        .header p {
+            margin: 0;
+            font-size: 0.98rem;
+            opacity: 0.92;
+        }
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 18px;
+            flex-wrap: wrap;
+        }
+        .tab-btn {
+            flex: 1;
+            min-width: 160px;
+            padding: 13px 16px;
+            border: 2px solid var(--primary);
+            background: var(--card);
+            color: var(--primary);
+            font-weight: 700;
+            font-size: 0.98rem;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .tab-btn.active, .tab-btn:hover {
+            background: var(--primary);
+            color: #f4f5f2;
+        }
+        .card {
+            background: var(--card);
+            border: 1px solid var(--border-paper);
+            border-radius: 14px;
+            padding: 24px 22px;
+            box-shadow: 0 3px 12px rgba(0, 0, 0, 0.09);
+            margin-bottom: 20px;
+        }
+        .hidden { display: none !important; }
+
+        /* Шпаргалка */
+        .ref-section {
+            margin-bottom: 22px;
+            border-bottom: 1px solid var(--border-paper);
+            padding-bottom: 18px;
+        }
+        .ref-section:last-child { border-bottom: none; padding-bottom: 0; margin-bottom: 0; }
+        .ref-section h3 {
+            color: var(--primary);
+            margin: 0 0 10px 0;
+            font-size: 1.2rem;
+        }
+        .ref-list {
+            margin: 0;
+            padding-left: 22px;
+        }
+        .ref-list li { margin-bottom: 8px; }
+        .badge {
+            display: inline-block;
+            background: var(--primary-light);
+            color: var(--primary);
+            border: 1px solid #aab8a9;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+        }
+
+        /* Тест */
+        .progress-bar-wrap {
+            background: #a5a8a3;
+            border-radius: 10px;
+            height: 11px;
+            margin-bottom: 18px;
+            overflow: hidden;
+        }
+        .progress-bar {
+            background: var(--primary);
+            height: 100%;
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        .q-meta {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            font-size: 0.9rem;
+            color: var(--muted);
+            margin-bottom: 12px;
+            font-weight: 700;
+        }
+        .q-text {
+            font-size: 1.18rem;
+            font-weight: 700;
+            margin-bottom: 18px;
+            color: var(--text);
+        }
+        .options {
+            display: flex;
+            flex-direction: column;
+            gap: 11px;
+        }
+        .opt-btn {
+            text-align: left;
+            padding: 15px 18px;
+            border: 1px solid var(--border-paper);
+            border-radius: 10px;
+            background: var(--card-inner);
+            font-size: 1rem;
+            line-height: 1.5;
+            cursor: pointer;
+            transition: all 0.15s;
+            color: var(--text);
+        }
+        .opt-btn:hover:not(:disabled) {
+            border-color: var(--primary);
+            background: var(--primary-light);
+        }
+        .opt-btn.correct {
+            border: 2px solid var(--correct);
+            background: var(--correct-bg);
+            color: #113b15;
+            font-weight: 700;
+        }
+        .opt-btn.wrong {
+            border: 2px solid var(--wrong);
+            background: var(--wrong-bg);
+            color: #541212;
+        }
+        .opt-btn:disabled { cursor: default; }
+        .explanation {
+            margin-top: 18px;
+            padding: 15px 18px;
+            border-radius: 10px;
+            background: var(--card-inner);
+            border-left: 4px solid var(--accent);
+            font-size: 0.96rem;
+            color: var(--text);
+        }
+        .controls {
+            margin-top: 20px;
+            display: flex;
+            justify-content: flex-end;
+            gap: 10px;
+        }
+        .btn-primary {
+            background: var(--primary);
+            color: #f4f5f2;
+            border: none;
+            padding: 13px 24px;
+            font-size: 1rem;
+            font-weight: 700;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .btn-primary:hover { background: #163d1a; }
+        .btn-outline {
+            background: var(--card-inner);
+            color: var(--primary);
+            border: 2px solid var(--primary);
+            padding: 11px 20px;
+            font-size: 0.96rem;
+            font-weight: 700;
+            border-radius: 10px;
+            cursor: pointer;
+        }
+        .btn-outline:hover { background: var(--primary-light); }
+        .score-box {
+            text-align: center;
+            padding: 18px 8px;
+        }
+        .score-num {
+            font-size: 2.6rem;
+            font-weight: 800;
+            color: var(--primary);
+            margin: 10px 0;
+        }
+        .mistake-item {
+            background: var(--card-inner);
+            border: 1px solid #b88c8c;
+            border-radius: 10px;
+            padding: 15px;
+            margin-bottom: 12px;
+            text-align: left;
+            font-size: 0.95rem;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="top-nav">
+        <a href="index.html" class="back-link">← В главное меню</a>
+    </div>
+
+    <div class="header">
+        <h1>Сира: Часть 3 — Мекканский период</h1>
+        <p>13 лет пророчества в Мекке: первые откровения, тайный и открытый призыв, Эфиопия, Исра и Мирадж, присяги при Акабе</p>
+    </div>
+
+    <div class="tabs">
+        <button class="tab-btn active" id="tab-quiz" onclick="switchTab('quiz')">📝 Пройти тест (25 вопросов)</button>
+        <button class="tab-btn" id="tab-ref" onclick="switchTab('ref')">📖 Шпаргалка для повторения</button>
+    </div>
+
+    <!-- БЛОК ТЕСТА -->
+    <div id="view-quiz" class="card">
+        <div id="quiz-start">
+            <h2 style="margin-top:0; font-size: 1.35rem;">Готов проверить знания?</h2>
+            <p>Тест охватывает ключевые этапы 13 лет мекканского периода Сиры:</p>
+            <ul>
+                <li>Ниспослание первых аятов в пещере Хира и поддержка Хадиджи и Вараки ибн Науфаля;</li>
+                <li>3 года тайного призыва, первые мусульмане и дом аль-Аркама;</li>
+                <li>Открытый призыв, гонения на сподвижников и переселение в Эфиопию;</li>
+                <li>Принятие Ислама Хамзой и Умаром, бойкот, Год скорби и поход в Таиф;</li>
+                <li>Аль-Исра валь-Мирадж, две присяги при Акабе и выход в Хиджру.</li>
+            </ul>
+            <div style="margin-top: 22px; display: flex; gap: 10px; flex-wrap: wrap;">
+                <button class="btn-primary" onclick="startQuiz(false)">Начать полный тест (25 вопросов)</button>
+                <button class="btn-outline" onclick="startQuiz(true)">Перемешать вопросы</button>
+            </div>
+        </div>
+
+        <div id="quiz-body" class="hidden">
+            <div class="q-meta">
+                <span id="q-counter">Вопрос 1 из 25</span>
+                <span id="q-category" class="badge">Категория</span>
+            </div>
+            <div class="progress-bar-wrap">
+                <div class="progress-bar" id="progress-bar"></div>
+            </div>
+            <div class="q-text" id="q-text">Текст вопроса</div>
+            <div class="options" id="options-container"></div>
+            <div class="explanation hidden" id="explanation"></div>
+            <div class="controls">
+                <button class="btn-primary hidden" id="next-btn" onclick="nextQuestion()">Следующий вопрос →</button>
+            </div>
+        </div>
+
+        <div id="quiz-result" class="hidden score-box">
+            <h2 style="margin-top:0;">Тест завершён!</h2>
+            <div class="score-num" id="score-display">0 / 25</div>
+            <p id="score-comment" style="font-size: 1.05rem; margin-bottom: 20px;"></p>
+            <div style="display: flex; gap: 10px; justify-content: center; flex-wrap: wrap; margin-bottom: 24px;">
+                <button class="btn-primary" onclick="startQuiz(true)">Пройти заново (вперемешку)</button>
+                <button class="btn-outline hidden" id="retry-mistakes-btn" onclick="retryMistakes()">Работать над ошибками</button>
+            </div>
+            <div id="mistakes-list"></div>
+        </div>
+    </div>
+
+    <!-- БЛОК ШПАРГАЛКИ -->
+    <div id="view-ref" class="card hidden">
+        <div class="ref-section">
+            <h3>1. Начало откровения и первые мусульмане (1–3 гг. пророчества)</h3>
+            <ul class="ref-list">
+                <li><strong>Первое откровение:</strong> В месяц Рамадан в пещере Хира явился ангел Джибриль и ниспослал первые 5 аятов суры <strong>«аль-Аляк»</strong> (<em>«Читай во имя твоего Господа...»</em>).</li>
+                <li><strong>Варака ибн Науфаль:</strong> Двоюродный брат Хадиджи, знаток Писаний, подтвердил, что к Пророку ﷺ приходил ангел Намус (Джибриль), являвшийся к Мусе, и предсказал, что соплеменники изгонят его.</li>
+                <li><strong>Возобновление откровений:</strong> После перерыва (фатра) были ниспосланы первые аяты суры <strong>«аль-Муддассир»</strong> (<em>«О завернувшийся! Встань и увещевай!»</em>), сделавшие Мухаммада ﷺ Посланником.</li>
+                <li><strong>Первые принявшие Ислам:</strong> <strong>Хадиджа бинт Хувайлид</strong> (первая среди женщин и людей вообще), <strong>Абу Бакр ас-Сиддик</strong> (первый из свободных мужчин), <strong>Али ибн Аби Талиб</strong> (первый из детей, ок. 10 лет) и <strong>Зайд ибн Хариса</strong> (вольноотпущенник).</li>
+                <li><strong>Дом аль-Аркама:</strong> Тайный призыв длился <strong>3 года</strong>; местом тайных собраний и обучения Корану стал дом <strong>аль-Аркама ибн Аби аль-Аркама</strong> у холма Сафа.</li>
+            </ul>
+        </div>
+
+        <div class="ref-section">
+            <h3>2. Открытый призыв и переселение в Эфиопию (4–6 гг. пророчества)</h3>
+            <ul class="ref-list">
+                <li><strong>Призыв на холме Сафа:</strong> После ниспослания аята <em>«Провозгласи то, что тебе велено...»</em> (сура аль-Хиджр, 94) Пророк ﷺ собрал курайшитов на холме Сафа и открыто призвал их к единобожию; его дядя <strong>Абу Лахаб</strong> ответил проклятием.</li>
+                <li><strong>Гонения и первые шахиды:</strong> Язычники подвергали пыткам слабых мусульман (Биляля, Хаббаба, семью Ясира). Первой шахидкой в Исламе стала <strong>Сумайя бинт Хайят</strong> (мать Аммара ибн Ясира).</li>
+                <li><strong>Переселение в Эфиопию (5-й год):</strong> Пророк ﷺ велел группе сподвижников переселиться к справедливому христианскому царю <strong>Наджаши (Асхаме)</strong>. В первой группе было около 11 мужчин и 4 женщины (включая Усмана ибн Аффана с женой Рукайей), во второй — более 80 мужчин.</li>
+                <li><strong>Речь Джафара:</strong> Послы курайшитов (Амр ибн аль-Ас и Абдуллах ибн Аби Раби'а) пытались вернуть мухаджиров, но <strong>Джафар ибн Аби Талиб</strong> произнёс перед Наджаши речь об Исламе и прочитал аяты из суры <strong>«Марьям»</strong>, после чего царь взял мусульман под защиту.</li>
+            </ul>
+        </div>
+
+        <div class="ref-section">
+            <h3>3. Укрепление Ислама, бойкот и Год скорби (6–10 гг. пророчества)</h3>
+            <ul class="ref-list">
+                <li><strong>Два великих воина (6-й год):</strong> Ислам приняли <strong>Хамза ибн Абд аль-Мутталиб</strong> (дядя Пророка ﷺ) и <strong>Умар ибн аль-Хаттаб</strong> (после чтения свитка с началом суры «Та Ха»). Мусульмане впервые совершили намаз открыто у Каабы.</li>
+                <li><strong>Бойкот в ущелье (7–10 гг.):</strong> Курайшиты заключили письменный договор о полной блокаде родов Бану Хашим и Бану аль-Мутталиб. Блокада длилась <strong>3 года</strong> и прекратилась, когда Пророк ﷺ сообщил, что черви изъели весь свиток договора, кроме слов «Во имя Твоё, Аллах».</li>
+                <li><strong>Год скорби (Ам аль-Хузун, 10-й год):</strong> С разницей в несколько дней (или месяцев) скончались два главных защитника Пророка ﷺ — его дядя <strong>Абу Талиб</strong> и супруга <strong>Хадиджа</strong>.</li>
+                <li><strong>Поход в Таиф:</strong> Пророк ﷺ вместе с Зайдом ибн Харисой отправился искать поддержку у племени Сакиф в Таифе, но жители побили его камнями. На обратном пути в долине Нахля к нему пришли и уверовали <strong>джинны</strong>.</li>
+            </ul>
+        </div>
+
+        <div class="ref-section">
+            <h3>4. Аль-Исра валь-Мирадж и присяги при Акабе (11–13 гг. пророчества)</h3>
+            <ul class="ref-list">
+                <li><strong>Ночное перенесение и Вознесение:</strong> Из Заповедной мечети (Мекка) в мечеть аль-Акса (Иерусалим) на животном <strong>аль-Бурак</strong>, где Пророк ﷺ совершил намаз имамом для всех пророков, а затем вознёсся через семь небес к <em>Сидрат аль-Мунтаха</em>. Там были предписаны <strong>5 ежедневных намазов</strong> (облегчённые с 50).</li>
+                <li><strong>Первая присяга при Акабе (12-й год):</strong> <strong>12 человек</strong> из Ясриба (Медины) присягнули Пророку ﷺ (присяга без обязательства сражаться). Вместе с ними в Ясриб был отправлен первый посол Ислама — <strong>Мус'аб ибн Умайр</strong>.</li>
+                <li><strong>Вторая присяга при Акабе (13-й год):</strong> <strong>73 мужчины и 2 женщины</strong> из племён Аус и Хазрадж присягнули защищать Пророка ﷺ в Медине так же, как защищают своих жён и детей. Были избраны 12 старейшин (накибов).</li>
+            </ul>
+        </div>
+
+        <div class="ref-section">
+            <h3>5. Заговор курайшитов и начало Хиджры (14-й год пророчества / 1 г. х.)</h3>
+            <ul class="ref-list">
+                <li><strong>Собрание в Дар ан-Надва:</strong> Курайшиты приняли план Абу Джахля — выбрать по одному сильному юноше от каждого рода, чтобы одновременно убить Пророка ﷺ.</li>
+                <li><strong>Выход из дома и пещера Саур:</strong> Оставить на своей постели Али ибн Аби Талиба для возврата вещей мекканцев, Пророк ﷺ вышел мимо стражи, читая начало суры «Йа Син», и вместе с <strong>Абу Бакром ас-Сиддиком</strong> укрылся на <strong>3 ночи</strong> в пещере на горе <strong>Саур</strong> (на юге от Мекки).</li>
+                <li><strong>Путь в Медину:</strong> Проводником выступил опытный следопыт <strong>Абдуллах ибн Урайкит</strong>; в пути их нагнал всадник <strong>Сурака ибн Малик</strong>, конь которого увяз в песке. 8 (или 12) раби аль-авваля Пророк ﷺ прибыл в предместье Медины — <strong>Кубу</strong>.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script>
+const allQuestions = [
+    {
+        cat: "Начало откровения",
+        q: "Первые аяты какой суры Священного Корана были ниспосланы Пророку ﷺ в пещере Хира?",
+        opts: [
+            "Сура «аль-Фатиха»",
+            "Сура «аль-Аляк» («Читай во имя твоего Господа, Который сотворил...»)",
+            "Сура «аль-Муддассир»",
+            "Сура «аль-Ихляс»"
+        ],
+        ans: 1,
+        exp: "Первыми откровениями стали первые 5 аятов суры «аль-Аляк» (96:1–5), после чего Мухаммад ﷺ стал Пророком (Наби)."
+    },
+    {
+        cat: "Начало откровения",
+        q: "К кому Хадиджа отвела взволнованного Пророка ﷺ сразу после первого явления ангела Джибриля в пещере Хира?",
+        opts: [
+            "К своему двоюродному брату Вараке ибн Науфалю (христианскому учёному, знавшему Писания)",
+            "К Абу Талибу",
+            "К монаху Бахире",
+            "К Абу Бакру ас-Сиддику"
+        ],
+        ans: 0,
+        exp: "Слепой старец Варака ибн Науфаль, переписывавший Евангелие на древнееврейском языке, выслушал рассказ Пророка ﷺ и сказал: «Это тот самый ангел (Намус), которого Аллах ниспосылал к Мусе! О, если бы я дожил до тех дней, когда твой народ изгонит тебя!»."
+    },
+    {
+        cat: "Начало откровения",
+        q: "Ниспослание каких аятов ознаменовало переход Пророка ﷺ от пророчества (нубувва) к открытой посланнической миссии (рисаля) после перерыва в откровениях?",
+        opts: [
+            "Начало суры «аль-Муддассир» («О завернувшийся! Встань и увещевай!»)",
+            "Сура «ан-Наср»",
+            "Сура «аль-Каусар»",
+            "Аят аль-Курси"
+        ],
+        ans: 0,
+        exp: "После периода затишья (фатра) Джибриль явился между небом и землёй, и были ниспосланы первые аяты суры «аль-Муддассир» (74:1–5) с повелением встать и призывать людей."
+    },
+    {
+        cat: "Тайный призыв",
+        q: "Кто стал первым человеком вообще, уверовавшим в пророческую миссию Мухаммада ﷺ?",
+        opts: [
+            "Абу Бакр ас-Сиддик",
+            "Хадиджа бинт Хувайлид",
+            "Али ибн Аби Талиб",
+            "Умар ибн аль-Хаттаб"
+        ],
+        ans: 1,
+        exp: "Первой уверовавшей в Пророка ﷺ стала его супруга Хадиджа бинт Хувайлид — она поддержала его с первой минуты без малейших колебаний."
+    },
+    {
+        cat: "Тайный призыв",
+        q: "Сколько лет длился этап тайного призыва к Исламу в Мекке?",
+        opts: [
+            "1 год",
+            "3 года",
+            "5 лет",
+            "7 лет"
+        ],
+        ans: 1,
+        exp: "Тайный призыв продолжался первые 3 года пророчества — Пророк ﷺ призывал только самых близких и надёжных людей."
+    },
+    {
+        cat: "Тайный призыв",
+        q: "Чей дом у холма Сафа служил тайным центром собраний, молитв и изучения Корана в первые годы Ислама в Мекке?",
+        opts: [
+            "Дом аль-Аркама ибн Аби аль-Аркама",
+            "Дом Абу Суфьяна",
+            "Дар ан-Надва",
+            "Дом Абдуллаха ибн Джуд'ана"
+        ],
+        ans: 0,
+        exp: "Юный сподвижник аль-Аркам ибн Аби аль-Аркам (из рода Бану Махзум) предоставил свой дом у холма Сафа, где Пророк ﷺ обучал первых мусульман вплоть до принятия Ислама Умаром ибн аль-Хаттабом."
+    },
+    {
+        cat: "Открытый призыв и Эфиопия",
+        q: "Кто из дядей Пророка ﷺ публично проклял его («Да сгинешь ты! Ради этого ли ты нас собрал?»), когда Пророк ﷺ созвал курайшитов на холме Сафа?",
+        opts: [
+            "Абу Талиб",
+            "Абу Лахаб (в ответ на это была ниспослана сура «аль-Масад»)",
+            "аль-Аббас",
+            "Хамза"
+        ],
+        ans: 1,
+        exp: "После слов Абу Лахаба Всевышний ниспослал суру «аль-Масад» («Да отсохнут руки Абу Лахаба, и сам он уже сгинул...»)."
+    },
+    {
+        cat: "Открытый призыв и Эфиопия",
+        q: "Кто стал первой шахидкой (мученицей, убитой за веру) в истории Ислама?",
+        opts: [
+            "Хадиджа бинт Хувайлид",
+            "Сумайя бинт Хайят (мать Аммара ибн Ясира)",
+            "Асма бинт Аби Бакр",
+            "Фатима бинт аль-Хаттаб"
+        ],
+        ans: 1,
+        exp: "Сумайя бинт Хайят отказалась отречься от Ислама под жестокими пытками курайшитов и была убита ударом копья Абу Джахля, став первой шахидкой в Исламе."
+    },
+    {
+        cat: "Открытый призыв и Эфиопия",
+        q: "В какую страну и на каком году пророчества состоялось первое переселение (хиджра) гонимых мусульман из Мекки?",
+        opts: [
+            "В Йемен, на 2-м году пророчества",
+            "В Эфиопию (Абиссинию), на 5-м году пророчества",
+            "В Шам, на 8-м году пророчества",
+            "В Таиф, на 10-м году пророчества"
+        ],
+        ans: 1,
+        exp: "В месяц Раджаб 5-го года пророчества группа мусульман переселилась в Эфиопию, о правителе которой (Наджаши) Пророк ﷺ сказал: «Там правит царь, при котором никого не притесняют»."
+    },
+    {
+        cat: "Открытый призыв и Эфиопия",
+        q: "Кто выступил от имени мусульман перед эфиопским царем Наджаши (Асхамой) и прочитал ему аяты из суры «Марьям», расстроив замысел послов курайшитов?",
+        opts: [
+            "Усман ибн Аффан",
+            "Джафар ибн Аби Талиб",
+            "Абдуррахман ибн Ауф",
+            "аз-Зубайр ибн аль-Аввам"
+        ],
+        ans: 1,
+        exp: "Джафар ибн Аби Талиб (двоюродный брат Пророка ﷺ) произнёс знаменитую речь о сути Ислама и прочитал начало суры «Марьям» о пророке Исе и его матери, после чего Наджаши заплакал и отказался выдавать мусульман."
+    },
+    {
+        cat: "Укрепление Ислама и испытания",
+        q: "Принятие Ислама какими двумя выдающимися курайшитами на 6-м году пророчества позволило мусульманам впервые совершить молитву открыто у Каабы?",
+        opts: [
+            "Абу Бакром и Усманом",
+            "Хамзой ибн Абд аль-Мутталибом и Умаром ибн аль-Хаттабом",
+            "Халидом ибн аль-Валидом и Амром ибн аль-Асом",
+            "Тальхой и аз-Зубайром"
+        ],
+        ans: 1,
+        exp: "С разницей в три дня Ислам приняли дядя Пророка ﷺ Хамза и грозный Умар ибн аль-Хаттаб. Абдуллах ибн Мас'уд говорил: «Мы обрели величие с тех пор, как Умар принял Ислам»."
+    },
+    {
+        cat: "Укрепление Ислама и испытания",
+        q: "Аяты какой суры, прочитанные в доме сестры Фатимы бинт аль-Хаттаб, потрясли сердце Умара ибн аль-Хаттаба и привели его к принятию Ислама?",
+        opts: [
+            "Сура «Та Ха»",
+            "Сура «Йа Син»",
+            "Сура «аль-Бакара»",
+            "Сура «ар-Рахман»"
+        ],
+        ans: 0,
+        exp: "Умар прочитал свиток с первыми аятами суры «Та Ха» (20:1–8), которыми в доме его сестры и её мужа Саида ибн Зайда обучал сподвижник Хаббаб ибн аль-Аратт, и сразу отправился в дом аль-Аркама принять Ислам."
+    },
+    {
+        cat: "Укрепление Ислама и испытания",
+        q: "Сколько лет длился полный экономический и социальный бойкот родов Бану Хашим и Бану аль-Мутталиб в ущелье Абу Талиба (с 7-го по 10-й год пророчества)?",
+        opts: [
+            "1 год",
+            "3 года",
+            "5 лет",
+            "7 лет"
+        ],
+        ans: 1,
+        exp: "Бойкот длился 3 тяжёлых года, в течение которых мусульмане и их родственники страдали от голода, пока свиток договора внутри Каабы не был съеден древесными червями."
+    },
+    {
+        cat: "Укрепление Ислама и испытания",
+        q: "Почему 10-й год пророчества вошёл в историю Сиры под названием «Год скорби» (Ам аль-Хузун)?",
+        opts: [
+            "В этот год произошло сильное землетрясение в Мекке",
+            "В этот год скончались два главных защитника и опоры Пророка ﷺ — его дядя Абу Талиб и жена Хадиджа",
+            "В этот год погибли все переселенцы в Эфиопии",
+            "В этот год разрушилась Кааба"
+        ],
+        ans: 1,
+        exp: "Смерть дяди Абу Талиба (внешней защиты от курайшитов) и любимой супруги Хадиджи (внутренней душевной опоры) стала тягчайшим испытанием для Посланника Аллаха ﷺ."
+    },
+    {
+        cat: "Укрепление Ислама и испытания",
+        q: "В какой город отправился Пророк ﷺ вместе с Зайдом ибн Харисой после смерти Абу Талиба и Хадиджи в поисках поддержки, но был изгнан и побит камнями?",
+        opts: [
+            "В Ясриб (Медину)",
+            "В Таиф (к племени Сакиф)",
+            "В Хайбар",
+            "В Наджран"
+        ],
+        ans: 1,
+        exp: "Вожди Таифа из племени Сакиф не только отвергли призыв, но и натравили на Пророка ﷺ толпу глупцов и рабов, которые забрасывали его камнями до крови."
+    },
+    {
+        cat: "Укрепление Ислама и испытания",
+        q: "Кто уверовал в Пророка ﷺ и принял от него Коран на обратном пути из Таифа в долине Нахля, когда он совершал утренний намаз?",
+        opts: [
+            "Группа джиннов (об этом говорится в сурах «аль-Ахкаф» и «аль-Джинн»)",
+            "Делегация из Персии",
+            "Караван из Византии",
+            "Вожди племени Хавазин"
+        ],
+        ans: 0,
+        exp: "Всевышний направил к Пророку ﷺ группу джиннов из Насибина, которые внимательно выслушали чтение Корана, уверовали и вернулись к своему народу увещевателями."
+    },
+    {
+        cat: "Исра, Мирадж и Акаба",
+        q: "Какое главное религиозное предписание было даровано умме напрямую во время Вознесения Пророка ﷺ (аль-Мирадж)?",
+        opts: [
+            "Пост в месяц Рамадан",
+            "Пять обязательных ежедневных намазов (облегчённых с пятидесяти)",
+            "Обязательный хадж в Мекку",
+            "Выплата закята"
+        ],
+        ans: 1,
+        exp: "Именно во время аль-Мираджа (в отличие от других столпов, ниспосланных через Джибриля на земле) Аллах напрямую предписал 50 намазов, которые после обращений Пророка ﷺ были сокращены до 5 по исполнению, но с наградой за 50."
+    },
+    {
+        cat: "Исра, Мирадж и Акаба",
+        q: "Почему Абу Бакр получил великий титул «ас-Сиддик» («Правдивейший»)?",
+        opts: [
+            "За то, что он первым переписал весь Коран",
+            "За то, что он без малейших сомнений подтвердил истинность Ночного перенесения и Вознесения (аль-Исра валь-Мирадж), когда язычники высмеивали это",
+            "За победу в битве при Бадре",
+            "За то, что он выкупил семерых рабов"
+        ],
+        ans: 1,
+        exp: "Когда многобожники прибежали к Абу Бакру со словами: «Твой друг утверждает, что за одну ночь побывал в Иерусалиме!», он ответил: «Если он так сказал, значит, это правда. Я верю ему и в более удивительном — в вестях с небес!»."
+    },
+    {
+        cat: "Исра, Мирадж и Акаба",
+        q: "Сколько жителей Ясриба (Медины) принесли Первую присягу при Акабе на 12-м году пророчества?",
+        opts: [
+            "6 человек",
+            "12 человек",
+            "73 мужчины и 2 женщины",
+            "100 человек"
+        ],
+        ans: 1,
+        exp: "На 12-м году пророчества при Акабе присягнули 12 человек из Ясриба (10 из племени Хазрадж и 2 из племени Аус). Эта присяга известна как «присяга женщин», так как в ней ещё не было условия о вооружённой защите."
+    },
+    {
+        cat: "Исра, Мирадж и Акаба",
+        q: "Кого Пророк ﷺ отправил в Ясриб после Первой присяги при Акабе для обучения жителей Корану и основам Ислама (он стал первым послом в истории Ислама)?",
+        opts: [
+            "Мус'аба ибн Умайра",
+            "Муаза ибн Джабаля",
+            "Биляля ибн Рабаха",
+            "Сальмана аль-Фариси"
+        ],
+        ans: 0,
+        exp: "Мус'аб ибн Умайр блестяще справился с миссией: за один год благодаря его мудрому призыву в Ясрибе не осталось почти ни одного дома, куда бы не вошёл Ислам (включая вождей Са'да ибн Муаза и Усайда ибн Худайра)."
+    },
+    {
+        cat: "Исра, Мирадж и Акаба",
+        q: "Сколько человек из Ясриба участвовало во Второй (Великой) присяге при Акабе на 13-м году пророчества, обязавшись защищать Пророка ﷺ в Медине?",
+        opts: [
+            "12 человек",
+            "40 человек",
+            "73 мужчины и 2 женщины",
+            "120 человек"
+        ],
+        ans: 2,
+        exp: "В тайной ночной встрече в дни хаджа участвовали 73 мужчины и 2 женщины (Нусайба бинт Ка'б и Асма бинт Амр), открыв дорогу для переселения мусульман в Медину."
+    },
+    {
+        cat: "Подготовка к Хиджре",
+        q: "Кого Пророк ﷺ оставил на своей постели в ночь выхода из Мекки, чтобы отвлечь убийц и вернуть жителям Мекки их вещи, оставленные ему на хранение?",
+        opts: [
+            "Али ибн Аби Талиба",
+            "Зайда ибн Харису",
+            "Абу Бакра ас-Сиддика",
+            "Усмана ибн Аффана"
+        ],
+        ans: 0,
+        exp: "Али ибн Аби Талиб смело лёг на постель Пророка ﷺ, укрывшись его зелёным хадрамаутским плащом, а утром раздал жителям Мекки все доверенные Пророку ﷺ ценности."
+    },
+    {
+        cat: "Подготовка к Хиджре",
+        q: "В какой пещере и сколько ночей укрывались Пророк ﷺ и Абу Бакр ас-Сиддик от погони курайшитов в начале Хиджры?",
+        opts: [
+            "В пещере Хира на горе ан-Нур, 7 ночей",
+            "В пещере на горе Саур (к югу от Мекки), 3 ночи",
+            "В пещере Ухуд, 1 ночь",
+            "В пещере Таифа, 5 ночей"
+        ],
+        ans: 1,
+        exp: "Чтобы сбить преследователей со следа, Пророк ﷺ и Абу Бакр направились на юг (в сторону Йемена) и провели 3 ночи в пещере на горе Саур, где о них упоминает аят: «...когда они двое находились в пещере, и он сказал своему спутнику: „Не печалься, ибо Аллах — с нами“» (9:40)."
+    },
+    {
+        cat: "Подготовка к Хиджре",
+        q: "Кто из дочерей Абу Бакра приносила еду в пещеру Саур и разорвала свой пояс на две части, чтобы привязать провизию, за что получила прозвище «Зу-н-Нитакайн» («Обладательница двух поясов»)?",
+        opts: [
+            "Аиша бинт Аби Бакр",
+            "Асма бинт Аби Бакр",
+            "Умм Кульсум бинт Аби Бакр",
+            "Хафса бинт Умар"
+        ],
+        ans: 1,
+        exp: "Асма бинт Аби Бакр тайно носила еду в горы, проявив редкое мужество и находчивость, и навсегда вошла в историю под почётным прозвищем «Обладательница двух поясов»."
+    },
+    {
+        cat: "Подготовка к Хиджре",
+        q: "Кто из курайшитских всадников нагнал Пророка ﷺ и Абу Бакра на пути в Медину ради награды в 100 верблюдов, но после того как ноги его коня увязли в песке, попросил пощады и получил от Пророка ﷺ предсказание о браслетах персидского царя Хосрова?",
+        opts: [
+            "Сурака ибн Малик",
+            "Халид ибн аль-Валид",
+            "Амр ибн аль-Ас",
+            "Икрима ибн Аби Джахль"
+        ],
+        ans: 0,
+        exp: "Сурака ибн Малик убедился, что Пророк ﷺ находится под защитой Аллаха, попросил написать ему охранную грамоту и сдержал слово, отводя от них других преследователей. В эпоху халифа Умара предсказание сбылось, и на Сураку надели браслеты Хосрова."
+    }
+];
+
+let currentQuestions = [];
+let currentIndex = 0;
+let score = 0;
+let mistakes = [];
+
+function switchTab(tab) {
+    document.getElementById('tab-quiz').classList.toggle('active', tab === 'quiz');
+    document.getElementById('tab-ref').classList.toggle('active', tab === 'ref');
+    document.getElementById('view-quiz').classList.toggle('hidden', tab !== 'quiz');
+    document.getElementById('view-ref').classList.toggle('hidden', tab !== 'ref');
+}
+
+function shuffleArray(arr) {
+    const copy = [...arr];
+    for (let i = copy.length - 1; i > 0; i--) {
+        const j = Math.floor(Math.random() * (i + 1));
+        [copy[i], copy[j]] = [copy[j], copy[i]];
+    }
+    return copy;
+}
+
+function startQuiz(shuffle, customList = null) {
+    if (customList) {
+        currentQuestions = customList;
+    } else {
+        currentQuestions = shuffle ? shuffleArray(allQuestions) : [...allQuestions];
+    }
+    currentIndex = 0;
+    score = 0;
+    mistakes = [];
+
+    document.getElementById('quiz-start').classList.add('hidden');
+    document.getElementById('quiz-result').classList.add('hidden');
+    document.getElementById('quiz-body').classList.remove('hidden');
+
+    renderQuestion();
+}
+
+function renderQuestion() {
+    const qObj = currentQuestions[currentIndex];
+    document.getElementById('q-counter').textContent = `Вопрос ${currentIndex + 1} из ${currentQuestions.length}`;
+    document.getElementById('q-category').textContent = qObj.cat;
+    document.getElementById('progress-bar').style.width = `${((currentIndex) / currentQuestions.length) * 100}%`;
+    document.getElementById('q-text').textContent = qObj.q;
+
+    const optsContainer = document.getElementById('options-container');
+    optsContainer.innerHTML = '';
+
+    qObj.opts.forEach((optText, idx) => {
+        const btn = document.createElement('button');
+        btn.className = 'opt-btn';
+        btn.textContent = optText;
+        btn.onclick = () => handleAnswer(idx, btn);
+        optsContainer.appendChild(btn);
+    });
+
+    document.getElementById('explanation').classList.add('hidden');
+    document.getElementById('next-btn').classList.add('hidden');
+}
+
+function handleAnswer(selectedIdx, selectedBtn) {
+    const qObj = currentQuestions[currentIndex];
+    const buttons = document.querySelectorAll('.opt-btn');
+    buttons.forEach(b => b.disabled = true);
+
+    if (selectedIdx === qObj.ans) {
+        selectedBtn.classList.add('correct');
+        score++;
+    } else {
+        selectedBtn.classList.add('wrong');
+        buttons[qObj.ans].classList.add('correct');
+        mistakes.push({
+            question: qObj,
+            userAnswer: qObj.opts[selectedIdx]
+        });
+    }
+
+    const expEl = document.getElementById('explanation');
+    expEl.innerHTML = `<strong>Пояснение:</strong> ${qObj.exp}`;
+    expEl.classList.remove('hidden');
+
+    const nextBtn = document.getElementById('next-btn');
+    nextBtn.textContent = (currentIndex + 1 < currentQuestions.length) ? 'Следующий вопрос →' : 'Показать результаты';
+    nextBtn.classList.remove('hidden');
+}
+
+function nextQuestion() {
+    currentIndex++;
+    if (currentIndex < currentQuestions.length) {
+        renderQuestion();
+    } else {
+        showResults();
+    }
+}
+
+function showResults() {
+    document.getElementById('progress-bar').style.width = '100%';
+    document.getElementById('quiz-body').classList.add('hidden');
+    document.getElementById('quiz-result').classList.remove('hidden');
+
+    const total = currentQuestions.length;
+    document.getElementById('score-display').textContent = `${score} / ${total}`;
+
+    const pct = Math.round((score / total) * 100);
+    let comment = "";
+    if (pct === 100) comment = "Ма ша Аллах! Безупречный результат, мекканский период усвоен на 100%!";
+    else if (pct >= 80) comment = "Отличный результат! Осталось повторить буквально пару деталей.";
+    else if (pct >= 60) comment = "Хороший старт! Загляни во вкладку «Шпаргалка» и закрепи материал.";
+    else comment = "Рекомендую сначала внимательно изучить вкладку «Шпаргалка», а затем пройти тест снова.";
+    document.getElementById('score-comment').textContent = comment;
+
+    const retryBtn = document.getElementById('retry-mistakes-btn');
+    const mistakesList = document.getElementById('mistakes-list');
+    mistakesList.innerHTML = '';
+
+    if (mistakes.length > 0) {
+        retryBtn.classList.remove('hidden');
+        const title = document.createElement('h3');
+        title.textContent = `Разбор ошибок (${mistakes.length}):`;
+        title.style.textAlign = 'left';
+        mistakesList.appendChild(title);
+
+        mistakes.forEach((m, i) => {
+            const div = document.createElement('div');
+            div.className = 'mistake-item';
+            div.innerHTML = `
+                <div style="font-weight:700; margin-bottom:6px;">${i + 1}. ${m.question.q}</div>
+                <div style="color:#8a2323; font-size:0.94rem;">❌ Твой ответ: ${m.userAnswer}</div>
+                <div style="color:#1e5c24; font-size:0.94rem; font-weight:700;">✅ Правильно: ${m.question.opts[m.question.ans]}</div>
+                <div style="font-size:0.9rem; color:#2b2e2c; margin-top:6px;">${m.question.exp}</div>
+            `;
+            mistakesList.appendChild(div);
+        });
+    } else {
+        retryBtn.classList.add('hidden');
+    }
+}
+
+function retryMistakes() {
+    const mistakeQuestions = mistakes.map(m => m.question);
+    startQuiz(false, mistakeQuestions);
+}
+</script>
+
+<script src="auth.js"></script>
+</body>
+</html>
