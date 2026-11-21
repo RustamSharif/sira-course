@@ -3,124 +3,163 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Интерактивный курс по Сире Пророка ﷺ — Главное меню</title>
+    <title>Сира Пророка Мухаммада ﷺ — Интерактивный курс</title>
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
     <style>
         :root {
-            --primary: #1d4f22;
-            --primary-light: #cdd6cc;
-            --accent: #9c7c28;
-            --bg: #b8bab6;
-            --card: #ccceca;
-            --card-inner: #d8dad6;
-            --text: #191c1a;
-            --muted: #454946;
-            --border-paper: #9ea19c;
+            --primary: #1b5e20;
+            --primary-dark: #124116;
+            --primary-light: #e4ede5;
+            --accent: #b89535;
+            --bg-base: #b5b8b4;
+            --card-bg: #d4d6d2;
+            --item-bg: #e2e4e0;
+            --text: #1a1d1a;
+            --muted: #4a4f4a;
         }
         * { box-sizing: border-box; }
         body {
             font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-            background-color: var(--bg);
-            background-image:
-                radial-gradient(rgba(0,0,0,0.035) 1px, transparent 0),
-                radial-gradient(rgba(255,255,255,0.06) 1px, transparent 0),
-                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='none' stroke='%232c302e' stroke-width='0.9' stroke-opacity='0.065'%3E%3Crect x='36' y='36' width='48' height='48'/%3E%3Crect x='36' y='36' width='48' height='48' transform='rotate(45 60 60)'/%3E%3Ccircle cx='60' cy='60' r='16'/%3E%3Cpolygon points='60,26 67,53 94,60 67,67 60,94 53,67 26,60 53,53'/%3E%3Cpath d='M0 0 L24 24 M120 0 L96 24 M0 120 L24 96 M120 120 L96 96'/%3E%3Ccircle cx='0' cy='0' r='18'/%3E%3Ccircle cx='120' cy='0' r='18'/%3E%3Ccircle cx='0' cy='120' r='18'/%3E%3Ccircle cx='120' cy='120' r='18'/%3E%3Cpath d='M60 0 L60 22 M60 98 L60 120 M0 60 L22 60 M98 60 L120 60'/%3E%3C/g%3E%3C/svg%3E");
-            background-size: 16px 16px, 23px 23px, 120px 120px;
-            background-position: 0 0, 7px 11px, 0 0;
-            color: var(--text);
-            margin: 0;
-            padding: 20px 14px;
             font-size: 18px;
             line-height: 1.6;
+            color: var(--text);
+            margin: 0;
+            padding: 24px 16px;
+            background-color: var(--bg-base);
+            background-image:
+                radial-gradient(rgba(0, 0, 0, 0.04) 1px, transparent 0),
+                radial-gradient(rgba(255, 255, 255, 0.08) 1px, transparent 0),
+                url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='120' height='120' viewBox='0 0 120 120'%3E%3Cg fill='none' stroke='%232e352e' stroke-width='1' stroke-opacity='0.07'%3E%3Crect x='30' y='30' width='60' height='60'/%3E%3Crect x='30' y='30' width='60' height='60' transform='rotate(45 60 60)'/%3E%3Ccircle cx='60' cy='60' r='16'/%3E%3Cpath d='M60 0 L60 18 M60 102 L60 120 M0 60 L18 60 M102 60 L120 60'/%3E%3Cpath d='M0 0 L22 22 M120 0 L98 22 M0 120 L22 98 M120 120 L98 98'/%3E%3C/g%3E%3C/svg%3E");
+            background-size: 18px 18px, 24px 24px, 120px 120px;
+            background-position: 0 0, 9px 9px, 0 0;
         }
         .container {
             max-width: 820px;
             margin: 0 auto;
         }
         .header {
-            background: linear-gradient(135deg, #163d1a, #1f5425);
-            color: #f4f5f2;
-            padding: 26px 20px;
-            border-radius: 14px;
+            background: linear-gradient(135deg, #124116, #1b5e20);
+            color: #f4f6f4;
+            padding: 30px 24px;
+            border-radius: 16px;
             text-align: center;
-            margin-bottom: 22px;
-            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.16);
-            border-bottom: 4px solid var(--accent);
+            margin-bottom: 24px;
+            box-shadow: 0 6px 18px rgba(0, 0, 0, 0.16);
+            border-bottom: 5px solid var(--accent);
         }
         .header h1 {
-            margin: 0 0 8px 0;
-            font-size: 1.55rem;
+            margin: 0 0 10px 0;
+            font-size: 1.75rem;
+            line-height: 1.3;
         }
         .header p {
             margin: 0;
-            font-size: 1rem;
+            font-size: 1.05rem;
             opacity: 0.92;
+        }
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 14px;
+            flex-wrap: wrap;
+            margin-top: 16px;
+        }
+        .stat-pill {
+            background: rgba(255, 255, 255, 0.14);
+            padding: 6px 14px;
+            border-radius: 20px;
+            font-size: 0.92rem;
+            font-weight: 600;
+            border: 1px solid rgba(255, 255, 255, 0.22);
+        }
+        .section-card {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 26px;
+            box-shadow: 0 4px 14px rgba(0, 0, 0, 0.09);
+            border: 1px solid rgba(0, 0, 0, 0.07);
+            margin-bottom: 22px;
         }
         .section-title {
             color: var(--primary);
-            font-size: 1.15rem;
-            font-weight: 800;
-            margin: 22px 0 12px 4px;
-            text-transform: uppercase;
-            letter-spacing: 0.03em;
+            margin: 0 0 18px 0;
+            font-size: 1.3rem;
+            padding-bottom: 10px;
+            border-bottom: 2px solid rgba(27, 94, 32, 0.2);
         }
         .menu-grid {
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 14px;
         }
-        .menu-card {
+        .menu-item {
             display: flex;
             align-items: center;
             justify-content: space-between;
-            gap: 14px;
-            background: var(--card);
-            border: 1px solid var(--border-paper);
+            gap: 16px;
+            background: var(--item-bg);
+            border: 2px solid #9ea39d;
             border-radius: 14px;
             padding: 18px 20px;
             text-decoration: none;
             color: var(--text);
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
             transition: all 0.18s ease;
         }
-        .menu-card:hover {
-            background: var(--card-inner);
+        .menu-item:hover {
             border-color: var(--primary);
+            background: #ebf2eb;
             transform: translateY(-2px);
+            box-shadow: 0 4px 12px rgba(27, 94, 32, 0.14);
         }
-        .menu-card.exam {
-            background: #c5cdc4;
-            border: 2px solid var(--primary);
-        }
-        .card-info {
+        .menu-item-info {
             flex: 1;
         }
-        .card-badge {
+        .menu-item-num {
             display: inline-block;
-            background: var(--primary-light);
-            color: var(--primary);
-            border: 1px solid #aab8a9;
+            background: var(--primary);
+            color: #fff;
+            font-size: 0.85rem;
             font-weight: 700;
-            padding: 2px 10px;
-            border-radius: 6px;
-            font-size: 0.82rem;
+            padding: 3px 10px;
+            border-radius: 8px;
             margin-bottom: 6px;
         }
-        .card-title {
-            font-size: 1.12rem;
+        .menu-item-num.extra {
+            background: #5c4b18;
+        }
+        .menu-item-num.final {
+            background: #8c2323;
+        }
+        .menu-item-title {
+            font-size: 1.18rem;
             font-weight: 700;
             margin: 0 0 4px 0;
-            color: var(--text);
+            color: #143617;
         }
-        .card-desc {
-            font-size: 0.92rem;
+        .menu-item-desc {
+            font-size: 0.96rem;
             color: var(--muted);
             margin: 0;
         }
-        .card-arrow {
-            font-size: 1.35rem;
-            font-weight: 700;
+        .menu-item-arrow {
+            font-size: 1.4rem;
+            font-weight: 800;
             color: var(--primary);
+            white-space: nowrap;
+        }
+        .menu-item.final-card {
+            border-color: var(--accent);
+            background: #e7e5dc;
+        }
+        .menu-item.final-card:hover {
+            border-color: var(--primary);
+            background: #ebf2eb;
+        }
+        @media (max-width: 600px) {
+            body { font-size: 17px; padding: 14px 10px; }
+            .section-card { padding: 18px; }
+            .menu-item { padding: 15px; }
+            .menu-item-arrow { font-size: 1.2rem; }
         }
     </style>
 </head>
@@ -129,76 +168,85 @@
 <div class="container">
     <div class="header">
         <h1>Сира Пророка Мухаммада ﷺ</h1>
-        <p>Интерактивный курс из 7 модулей: шпаргалки и 190 проверочных вопросов с пояснениями</p>
+        <p>Интерактивный курс тестов и шпаргалок по жизнеописанию Посланника Аллаха ﷺ</p>
+        <div class="stats-bar">
+            <span class="stat-pill">📚 7 модулей</span>
+            <span class="stat-pill">📝 190 вопросов</span>
+            <span class="stat-pill">📖 7 шпаргалок</span>
+        </div>
     </div>
 
-    <div class="section-title">Основной курс (Хронология)</div>
-    <div class="menu-grid">
-        <a class="menu-card" href="sira_part1_pre_islamic_v4.html">
-            <div class="card-info">
-                <span class="card-badge">Часть 1 • 25 вопросов + шпаргалка</span>
-                <div class="card-title">Доисламский период и семья Пророка ﷺ</div>
-                <p class="card-desc">Родословная до 6-го колена, дяди и тёти, кормилицы, Зам-зам и Год Слона</p>
-            </div>
-            <div class="card-arrow">→</div>
-        </a>
+    <div class="section-card">
+        <h2 class="section-title">Основной хронологический курс</h2>
+        <div class="menu-grid">
+            <a href="sira_part1_pre_islamic.html" class="menu-item">
+                <div class="menu-item-info">
+                    <span class="menu-item-num">Часть 1 • 25 вопросов</span>
+                    <div class="menu-item-title">Доисламский период и семья Пророка ﷺ</div>
+                    <p class="menu-item-desc">Родословная до 6-го колена, дяди и тёти, кормилицы, молочные братья и сёстры, Зам-зам и Год Слона.</p>
+                </div>
+                <div class="menu-item-arrow">Открыть →</div>
+            </a>
 
-        <a class="menu-card" href="sira_part2_birth_to_prophethood_v3.html">
-            <div class="card-info">
-                <span class="card-badge">Часть 2 • 25 вопросов + шпаргалка</span>
-                <div class="card-title">От рождения до начала пророчества</div>
-                <p class="card-desc">Детство в Бану Са'д, поездка в Шам, брак с Хадиджей, перестройка Каабы и пещера Хира</p>
-            </div>
-            <div class="card-arrow">→</div>
-        </a>
+            <a href="sira_part2_birth_to_prophethood.html" class="menu-item">
+                <div class="menu-item-info">
+                    <span class="menu-item-num">Часть 2 • 25 вопросов</span>
+                    <div class="menu-item-title">От рождения до начала пророчества</div>
+                    <p class="menu-item-desc">Детство в Бану Са'д, сиротство, встреча с Бахирой, Союз благородных, брак с Хадиджей, перестройка Каабы и пещера Хира.</p>
+                </div>
+                <div class="menu-item-arrow">Открыть →</div>
+            </a>
 
-        <a class="menu-card" href="sira_part3_meccan_period.html">
-            <div class="card-info">
-                <span class="card-badge">Часть 3 • 25 вопросов + шпаргалка</span>
-                <div class="card-title">Мекканский период (13 лет призыва)</div>
-                <p class="card-desc">Первые откровения, тайный и открытый призыв, Эфиопия, бойкот, Исра и Мирадж, Акаба</p>
-            </div>
-            <div class="card-arrow">→</div>
-        </a>
+            <a href="sira_part3_meccan_period.html" class="menu-item">
+                <div class="menu-item-info">
+                    <span class="menu-item-num">Часть 3 • 25 вопросов</span>
+                    <div class="menu-item-title">Мекканский период (13 лет пророчества)</div>
+                    <p class="menu-item-desc">Первые откровения, тайный и открытый призыв, Эфиопия, бойкот, Год скорби, Таиф, Исра и Мирадж, присяги при Акабе.</p>
+                </div>
+                <div class="menu-item-arrow">Открыть →</div>
+            </a>
 
-        <a class="menu-card" href="sira_part4_medinan_period.html">
-            <div class="card-info">
-                <span class="card-badge">Часть 4 • 25 вопросов + шпаргалка</span>
-                <div class="card-title">Мединский период и кончина Пророка ﷺ</div>
-                <p class="card-desc">Хиджра, устройство общины, главные битвы, Худайбия, Открытие Мекки и Прощальный хадж</p>
-            </div>
-            <div class="card-arrow">→</div>
-        </a>
+            <a href="sira_part4_medinan_period.html" class="menu-item">
+                <div class="menu-item-info">
+                    <span class="menu-item-num">Часть 4 • 25 вопросов</span>
+                    <div class="menu-item-title">Мединский период и кончина Пророка ﷺ</div>
+                    <p class="menu-item-desc">Хиджра, строительство общины, Бадр, Ухуд, Хандак, Худайбия, Хайбар, Открытие Мекки, Табук, Прощальный хадж и кончина ﷺ.</p>
+                </div>
+                <div class="menu-item-arrow">Открыть →</div>
+            </a>
+        </div>
     </div>
 
-    <div class="section-title">Тематические модули и экзамен</div>
-    <div class="menu-grid">
-        <a class="menu-card" href="sira_extra1_family_and_wives.html">
-            <div class="card-info">
-                <span class="card-badge">Доп. модуль 1 • 25 вопросов + шпаргалка</span>
-                <div class="card-title">Семья Пророка ﷺ (Ахль аль-Байт)</div>
-                <p class="card-desc">Матери правоверных (11 жён), 7 детей, внуки и близкие домочадцы</p>
-            </div>
-            <div class="card-arrow">→</div>
-        </a>
+    <div class="section-card">
+        <h2 class="section-title">Тематические разделы и итоговый экзамен</h2>
+        <div class="menu-grid">
+            <a href="sira_extra1_family_and_wives.html" class="menu-item">
+                <div class="menu-item-info">
+                    <span class="menu-item-num extra">Доп. тест 1 • 25 вопросов</span>
+                    <div class="menu-item-title">Семья Пророка ﷺ: жёны, дети, внуки и домочадцы</div>
+                    <p class="menu-item-desc">Все 11 Матерей правоверных, 3 сына и 4 дочери, внуки аль-Хасан и аль-Хусайн, Ахль аль-Байт.</p>
+                </div>
+                <div class="menu-item-arrow">Открыть →</div>
+            </a>
 
-        <a class="menu-card" href="sira_extra2_companions.html">
-            <div class="card-info">
-                <span class="card-badge">Доп. модуль 2 • 25 вопросов + шпаргалка</span>
-                <div class="card-title">Выдающиеся сподвижники и сподвижницы</div>
-                <p class="card-desc">10 обрадованных Раем, титулы сахабов, хранители Корана и ансары Медины</p>
-            </div>
-            <div class="card-arrow">→</div>
-        </a>
+            <a href="sira_extra2_companions.html" class="menu-item">
+                <div class="menu-item-info">
+                    <span class="menu-item-num extra">Доп. тест 2 • 25 вопросов</span>
+                    <div class="menu-item-title">Выдающиеся сподвижники и сподвижницы</div>
+                    <p class="menu-item-desc">10 обрадованных Раем, почётные титулы сахабов, писцы откровения, великие ансары и сподвижницы.</p>
+                </div>
+                <div class="menu-item-arrow">Открыть →</div>
+            </a>
 
-        <a class="menu-card exam" href="sira_final_exam_40.html">
-            <div class="card-info">
-                <span class="card-badge">Итоговая аттестация • 40 вопросов</span>
-                <div class="card-title">Единый итоговый экзамен по всему курсу Сиры</div>
-                <p class="card-desc">Комплексная проверка знаний по всем периодам, именам, датам и событиям</p>
-            </div>
-            <div class="card-arrow">→</div>
-        </a>
+            <a href="sira_final_exam_40.html" class="menu-item final-card">
+                <div class="menu-item-info">
+                    <span class="menu-item-num final">Итоговый экзамен • 40 вопросов</span>
+                    <div class="menu-item-title">Общий зачёт по всему курсу Сиры</div>
+                    <p class="menu-item-desc">Сводная проверка знаний по всем хронологическим этапам, семье Пророка ﷺ и сподвижникам.</p>
+                </div>
+                <div class="menu-item-arrow">Сдать →</div>
+            </a>
+        </div>
     </div>
 </div>
 
